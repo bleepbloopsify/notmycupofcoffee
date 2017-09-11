@@ -20,6 +20,11 @@
         <artifactId>yamlbeans</artifactId>
         <version>1.06</version>
     </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>coffee</finalName>
