@@ -11,6 +11,7 @@ import java.io.File;
 
 public class Bean implements Serializable {
 
+  public String filename;
   public String name;
   public double price;
   public String color;

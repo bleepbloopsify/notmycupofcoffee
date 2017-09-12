@@ -1,4 +1,5 @@
 !coffee.GhostBean
+filename: Ghost.yml
 name: ghost
 color: '#eb9219'
 price: 3.0

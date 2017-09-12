@@ -1,4 +1,5 @@
 !coffee.DennisBean
+filename: Dennis.yml
 name: Dennis
 color: '#d4f148'
 price: 2.0

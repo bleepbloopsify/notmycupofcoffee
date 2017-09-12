@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="coffee.*" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.io.IOException" %>
 
 <html>
   <head>
@@ -14,21 +16,45 @@
   <body style="padding-top:75px;">
     <div class="row">
       <%
-      String bean = request.getParameter("bean");
+      String bean_filename = request.getParameter("bean");
+      LegumeLoader loader = new LegumeLoader(getServletContext().getRealPath("/") + "beans/");
       %>
       <c:choose>
-        <c:when test='<%= bean == "" %>'>
-            
+        <c:when test='<%= bean_filename == null %>'>
+            <form>
+              <select name="bean">
+                <%
+                ArrayList<Bean> beans = loader.getBeans();
+                for (Bean bean : beans) {
+                  %>
+                  <option value="<%= bean.filename %>"><%= bean.name %></option>
+                  <%
+                }
+                %>
+              </select>
+              <input type="submit" value="Select Bean">
+            </form>
         </c:when>
         <c:otherwise>
-            pizzas.
-            <br />
+          <%
+          Bean bean = null;
+          try {
+            bean = loader.getBean(bean_filename);
+          } catch (IOException e) {
+            out.println(e.getMessage());
+          }
+          if (bean != null) {
+          %>
+          <div class="bean col-sm-6 col-sm-offset-3" style="background-color:<%= bean.color %>">
+            <h1><%= bean.name %></h1>
+            <h2>$<%= bean.price %></h2>
+            <h3><%= bean.roast() %></h3>
+          </div>
+          <%
+          }
+          %>
         </c:otherwise>
-    </c:choose>
-
-      <div class="bean col-sm-6 col-sm-offset-3">
-
-      </div>
+      </c:choose>
     </div>
   </body>
 </html>

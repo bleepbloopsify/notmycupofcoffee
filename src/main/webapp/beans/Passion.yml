@@ -1,4 +1,5 @@
 !coffee.PassionBean
+filename: Passion.yml
 name: passion
 color: '#c03fd1'
 price: 6.0
