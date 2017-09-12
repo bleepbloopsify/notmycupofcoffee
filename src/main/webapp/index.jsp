@@ -13,15 +13,21 @@
 
 
   <body>
-    <h1>Hello World!</h1>
+
+    <%
+    if(session.getAttribute("initialized") == null) {
+      session.setAttribute("initialized", true);
+      out.println("Set");
+    }
+    %>
+
     <div class="row">
-      <div class="col-sm-6 col-sm-offset-3">
-        <h1>Welcome to our coffee shop!</h1>
+      <div class="bean col-sm-8 col-sm-offset-2">
+        <h2>Welcome to our coffee shop!</h2>
+      </div>
+      <div class="bean col-sm-8 col-sm-offset-2">
+        <a href="bean.jsp?bean=test">bean</a>
       </div>
     </div>
-    <%
-    out.println("Hello World!");
-    %>
-    <a href="bean.jsp?bean=test">bean</a>
   </body>
 </html>

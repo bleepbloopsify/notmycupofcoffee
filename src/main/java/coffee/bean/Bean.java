@@ -25,4 +25,9 @@ public class Bean implements Serializable{
   public String Beananza(String location) throws IOException {
     return "Hello";
   }
+
+
+  public String roast() {
+    return "yeet";
+  }
 }
