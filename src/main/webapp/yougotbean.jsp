@@ -1,18 +1,26 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="coffee.*" %>
-<%@ page import="com.esotericsoftware.yamlbeans.YamlReader" %>
-<%@ page import="java.io.FileReader" %>
+
 <html>
   <head>
   </head>
   <body>
-    <%
-    try {
-      YamlReader reader = new YamlReader(new FileReader(getServletContext().getRealPath("/") + "beans/" + request.getParameter("bean") + ".yml"));
-      Bean b = reader.read(Bean.class);
-      out.println(b.Beananza(getServletContext().getRealPath("/")));
-    } catch (Exception e) {
-      out.println(e.getMessage());
-    }
-    %>
+    <c:choose>
+      <c:when test="<${"POST".equalsIgnoreCase(request.getMethod())}">
+        <%
+        LegumeLoader loader = new LegumeLoader(getServletContext().getRealPath("/") + "beans/");
+        String bean_name = request.getParameter("bean");
+        Bean bean = loader.getBean(bean_name);
+        %>
+        <h2>${bean.roast() }</h2>
+      </c:when>
+      <c:otherwise>
+        Regular request
+        <form method="POST">
+          Bean:<input type="text" name="bean" />
+          <input type="submit" />
+        </form>
+      </c:otherwise>
+    </c:choose>
   </body>
 </html>
