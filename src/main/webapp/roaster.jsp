@@ -19,8 +19,7 @@
     </nav>
     <div class="container">
       <%
-      if(session.getAttribute("initialized") == null) {
-        session.setAttribute("initialized", true);
+      if(session.getAttribute("loader") == null) {
         LegumeLoader loader = new LegumeLoader(getServletContext().getRealPath("/") + "beans/");
         session.setAttribute("loader", loader);
       }
