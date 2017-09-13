@@ -1,4 +1,5 @@
 <%@ page import="coffee.*" %>
+<%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,47 +14,47 @@
   </head>
 
   <body>
+    <%
+    LegumeLoader loader = new LegumeLoader(getServletContext().getRealPath("/") + "beans/");
+    ArrayList<Bean> beans = loader.getBeans();
+    %>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/coffee">Passion Beans</a>
     </nav>
     <div class="container">
       <div class="row justify-content-center bean-title">
         <div class="col-sm-12">
-          <h2>Bean Passion Chamber</h2>
+          <h2>Bean Breeding Chamber</h2>
         </div>
       </div>
-      <form>
+      <form method="POST" action="roaster.jsp">
         <div class="form-group row justify-content-center">
           <div class="col-sm-6">
             <label for="bean-name">Name:</label>
-            <input type="text" id="bean-name" class="form-control">
+            <input type="text" name="bean-name" id="bean-name" class="form-control">
           </div>
         </div>
         <div class="form-group row justify-content-center">
           <div class="col-sm-6">
             <label for="bean-desc">Description:</label>
-            <textarea id="bean-desc" class="form-control" rows="5"></textarea>
+            <textarea name="bean-desc" id="bean-desc" class="form-control" rows="5"></textarea>
           </div>
         </div>
         <div class="form-group row justify-content-center">
           <div class="col-sm-4">
             <label for="parent-1">First Parent:</label>
             <select class="form-control" id="parent1">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+              <% for (Bean bean : beans) { %>
+                <option value="<%= loader.sendBean(bean) %>"><%= bean.getName() %></option>
+              <% } %>
             </select>
           </div>
           <div class="col-sm-4">
               <label for="parent-2">Second Parent:</label>
             <select class="form-control" id="parent2">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+              <% for (Bean bean : beans) { %>
+                <option value="<%= loader.sendBean(bean) %>"><%= bean.getName() %></option>
+              <% } %>
             </select>
           </div>
         </div>
