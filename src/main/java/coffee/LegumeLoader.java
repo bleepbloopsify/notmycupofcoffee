@@ -17,11 +17,12 @@ import java.lang.reflect.Constructor;
 public class LegumeLoader {
   private String legumefolder;
   private ArrayList<Bean> beans;
-  private String[] beanNames = {"Cofveve", "Dennis", "Ghost", "Hyper", "MG",
+  private String[] beanNames = {"Covfefe", "Dennis", "Ghost", "Hyper", "MG",
                                 "Passion", "Raid", "Tnek", "Yeet"};
 
   public LegumeLoader(String legumefolder) throws ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
     this.legumefolder = legumefolder;
+    beans = new ArrayList<Bean>();
     for (String name : this.beanNames) {
       beans.add(this.getBean(name + "Bean"));
     }
@@ -32,7 +33,7 @@ public class LegumeLoader {
   }
 
   public Bean getBean(String name) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-    Class<?> beanClass = Class.forName(name);
+    Class<?> beanClass = Class.forName("coffee." + name);
     Constructor<?> constructor = beanClass.getConstructor();
     Bean bean = (Bean) constructor.newInstance();
     return bean;
