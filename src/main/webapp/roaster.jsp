@@ -25,8 +25,8 @@
       Bean bean = breeder.process(request);
       %>
       <div class="bean">
-        <%= bean.getName();  %>
-        <%= bean.roast(); %>
+        <%= bean.getName() %>
+        <%= bean.roast() %>
       </div>
     </div>
   </body>

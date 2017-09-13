@@ -43,7 +43,7 @@
         <div class="form-group row justify-content-center">
           <div class="col-sm-4">
             <label for="parent-1">First Parent:</label>
-            <select class="form-control" id="parent1">
+            <select class="form-control" name="parent1" id="parent1">
               <% for (Bean bean : beans) { %>
                 <option value="<%= loader.sendBean(bean) %>"><%= bean.getName() %></option>
               <% } %>
@@ -51,7 +51,7 @@
           </div>
           <div class="col-sm-4">
               <label for="parent-2">Second Parent:</label>
-            <select class="form-control" id="parent2">
+            <select class="form-control" name="parent2" id="parent2">
               <% for (Bean bean : beans) { %>
                 <option value="<%= loader.sendBean(bean) %>"><%= bean.getName() %></option>
               <% } %>

@@ -17,7 +17,7 @@ public class BeanBreeder {
   }
 
   public Bean breedBean(Bean parent1, Bean parent2, String name, String description) {
-    if (name == null || loader.beanExists(name)) {
+    if (name == null || loader.beanExists(name) || parent1 == null || parent2 == null) {
       return null;
     }
 
@@ -29,6 +29,7 @@ public class BeanBreeder {
   }
 
   public Bean recvBean(String bean) throws IOException, ClassNotFoundException {
+    if (bean == null) return null;
     final byte[] objToBytes = Base64.getDecoder().decode(bean);
     ByteArrayInputStream bais = new ByteArrayInputStream(objToBytes);
     ObjectInputStream ois = new ObjectInputStream(bais);
@@ -36,10 +37,10 @@ public class BeanBreeder {
   }
 
   public Bean process(HttpServletRequest request) throws IOException, ClassNotFoundException {
-    final Bean parent1 = recvBean(request.getParameter("parent1"));
-    final Bean parent2 = recvBean(request.getParameter("parent2"));
-    final String description = request.getParameter("description");
-    final String name = request.getParameter("name");
+    final Bean parent1 = this.recvBean(request.getParameter("parent1"));
+    final Bean parent2 = this.recvBean(request.getParameter("parent2"));
+    final String description = request.getParameter("bean-desc");
+    final String name = request.getParameter("bean-name");
     return this.breedBean(parent1, parent2, name, description);
   }
 }
