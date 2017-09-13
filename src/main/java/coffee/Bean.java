@@ -11,9 +11,9 @@ public class Bean implements Serializable {
 
   protected String name;
   protected String description;
-  public Bean parent1;
-  public Bean parent2;
-  public Bean inherit;
+  private Bean parent1;
+  private Bean parent2;
+  private Bean inherit;
 
   public String roast() {
     if (this.description == null) {
