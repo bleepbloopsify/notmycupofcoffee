@@ -8,11 +8,9 @@ import java.io.File;
 
 public class Bean implements Serializable {
 
-  public String filename;
-  public String name;
-  public double price;
-  public String color;
-  public String description;
+  protected String name;
+  protected String color;
+  protected String description;
 
   public String roast() {
     return this.description;

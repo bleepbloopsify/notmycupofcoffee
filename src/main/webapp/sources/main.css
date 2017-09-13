@@ -1,12 +1,56 @@
 body {
-  background-color: #d3af9c;
-  padding-top: 150px;
 }
 
-.bean {
-  border-radius: 100px;
-  background-color: #664535;
+.bean-container {
+  background: url("beans.jpg") no-repeat center center;
+  /*background: url("https://images.unsplash.com/photo-1448641434006-6a836ed4856d") no-repeat center center;*/
   color: white;
-  margin: 25px;
-  padding: 50px;
+  min-height: 300px;
+  padding: 40px 0;
+}
+
+.navbar-brand {
+  font-size: 28px;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.bean-title {
+  padding: 20px 0;
+}
+
+.bean-title h2 {
+  text-align: center;
+}
+
+.bean-desc {
+  padding: 10px 0;
+}
+
+.bean-desc h5 {
+ text-align: center;
+ font-weight: normal;
+ line-height: 30px;
+}
+
+.bean-btn {
+  padding: 10px 0;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.bean-data {
+  font-weight: normal;
+}
+
+.bean-avail {
+  color: green;
+}
+
+.bean-no-avail {
+  color: red;
 }

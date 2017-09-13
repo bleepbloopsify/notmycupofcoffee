@@ -22,8 +22,9 @@ public class LegumeLoader {
     this.legumefolder = legumefolder;
     File dir = new File(this.legumefolder);
     for (File f : dir.listFiles()) {
-      if (f.isFile()) {
-        beans.add(this.getBean(f.getName()));
+      String name = f.getName();
+      if (f.isFile() && name != "FlagBean") {
+        beans.add(this.getBean(name));
       }
     }
   }
