@@ -21,7 +21,7 @@ public class BeanBreeder {
       return null;
     }
 
-    CustomBean bean = new CustomBean();
+    Bean bean = new Bean();
     bean.setParent(parent1, parent2);
     bean.setDescription(description);
     bean.setName(name);
