@@ -17,15 +17,13 @@ import java.lang.reflect.Constructor;
 public class LegumeLoader {
   private String legumefolder;
   private ArrayList<Bean> beans;
+  private String[] beanNames = {"Cofveve", "Dennis", "Ghost", "Hyper", "MG",
+                                "Passion", "Raid", "Tnek", "Yeet"};
 
   public LegumeLoader(String legumefolder) throws ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
     this.legumefolder = legumefolder;
-    File dir = new File(this.legumefolder);
-    for (File f : dir.listFiles()) {
-      String name = f.getName();
-      if (f.isFile() && name != "FlagBean") {
-        beans.add(this.getBean(name));
-      }
+    for (String name : this.beanNames) {
+      beans.add(this.getBean(name + "Bean"));
     }
   }
 

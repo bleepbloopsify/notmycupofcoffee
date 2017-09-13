@@ -20,7 +20,7 @@
     }
     %>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/notmycupofcoffee">Passion Beans</a>
+      <a class="navbar-brand" href="/coffee">Passion Beans</a>
     </nav>
     <div class="container-fluid bean-container">
       <div class="row justify-content-center bean-title">
@@ -57,7 +57,7 @@
             </tr>
           </thead>
           <tbody>
-            <%-- <%
+            <%
             LegumeLoader loader = new LegumeLoader(getServletContext().getRealPath("/") + "beans/");
             ArrayList<Bean> beans = loader.getBeans();
             for (Bean bean : beans) {
@@ -67,7 +67,7 @@
               </tr>
             <%
             }
-            %> --%>
+            %>
             <tr>
               <th class="bean-data">Test</th>
               <th class="bean-data">Passion</th>
