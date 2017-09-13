@@ -39,8 +39,14 @@ public class BeanBreeder {
   public Bean process(HttpServletRequest request) throws IOException, ClassNotFoundException {
     final Bean parent1 = this.recvBean(request.getParameter("parent1"));
     final Bean parent2 = this.recvBean(request.getParameter("parent2"));
-    final String description = request.getParameter("bean-desc");
-    final String name = request.getParameter("bean-name");
+    String description = request.getParameter("bean-desc");
+    String name = request.getParameter("bean-name");
+    if (name.trim() == "") {
+      name = null;
+    }
+    if (description.trim() == "") {
+      description = null;
+    }
     return this.breedBean(parent1, parent2, name, description);
   }
 }

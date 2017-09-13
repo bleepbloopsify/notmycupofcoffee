@@ -25,7 +25,7 @@
     ArrayList<Bean> beans = loader.getBeans();
     %>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/coffee">Passion Beans</a>
+      <a class="navbar-brand" href="/">Passion Beans</a>
     </nav>
     <div class="container">
       <div class="row justify-content-center bean-title">

@@ -23,7 +23,7 @@
     }
     %>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/coffee">Passion Beans</a>
+      <a class="navbar-brand" href="/">Passion Beans</a>
     </nav>
     <div class="container-fluid bean-container">
       <div class="row justify-content-center bean-title">
@@ -75,13 +75,6 @@
             <%
             }
             %>
-            <tr>
-              <th class="bean-data">Test</th>
-              <th class="bean-data">Passion</th>
-              <th class="bean-data">n/a</th>
-              <th class="bean-data">n/a</th>
-              <th class="bean-data bean-avail">Yes</th>
-            </tr>
             <tr>
               <th class="bean-data">Flag</th>
               <th class="bean-data">-</th>

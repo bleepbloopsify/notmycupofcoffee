@@ -14,10 +14,6 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/coffee">Passion Beans</a>
-    </nav>
-    <div class="container">
       <%
       if(session.getAttribute("loader") == null) {
         LegumeLoader loader = new LegumeLoader(getServletContext().getRealPath("/") + "beans/");
@@ -29,11 +25,12 @@
       BeanBreeder breeder = new BeanBreeder(loader);
 
       Bean bean = breeder.process(request);
+      if (bean != null) {
+        loader.addBean(bean);
+      }
       %>
-      <div class="bean">
-        <%= bean.getName() %>
-        <%= bean.roast() %>
-      </div>
-    </div>
   </body>
+  <script>
+    window.location.href = '/';
+  </script>
 </html>
