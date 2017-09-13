@@ -28,7 +28,7 @@
                 for (Bean bean : beans) {
                   %>
                   <option value="<%= bean.filename %>"><%= bean.name %></option>
-                  <%
+                <%
                 }
                 %>
               </select>
