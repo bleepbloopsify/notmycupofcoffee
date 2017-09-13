@@ -19,7 +19,14 @@
     </nav>
     <div class="container">
       <%
-      LegumeLoader loader = new LegumeLoader(getServletContext().getRealPath("/") + "beans/");
+      if(session.getAttribute("initialized") == null) {
+        session.setAttribute("initialized", true);
+        LegumeLoader loader = new LegumeLoader(getServletContext().getRealPath("/") + "beans/");
+        session.setAttribute("loader", loader);
+      }
+      %>
+      <%
+      LegumeLoader loader = (LegumeLoader) session.getAttribute("loader");
       BeanBreeder breeder = new BeanBreeder(loader);
 
       Bean bean = breeder.process(request);

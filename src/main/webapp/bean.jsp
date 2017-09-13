@@ -16,8 +16,15 @@
   <body style="padding-top:75px;">
     <div class="row">
       <%
+      if(session.getAttribute("initialized") == null) {
+        session.setAttribute("initialized", true);
+        LegumeLoader loader = new LegumeLoader(getServletContext().getRealPath("/") + "beans/");
+        session.setAttribute("loader", loader);
+      }
+      %>
+      <%
       String bean_filename = request.getParameter("bean");
-      LegumeLoader loader = new LegumeLoader(getServletContext().getRealPath("/") + "beans/");
+      LegumeLoader loader = (LegumeLoader) session.getAttribute("loader");
       %>
       <c:choose>
         <c:when test='<%= bean_filename == null %>'>

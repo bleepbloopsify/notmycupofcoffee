@@ -19,6 +19,8 @@
     <%
     if(session.getAttribute("initialized") == null) {
       session.setAttribute("initialized", true);
+      LegumeLoader loader = new LegumeLoader(getServletContext().getRealPath("/") + "beans/");
+      session.setAttribute("loader", loader);
     }
     %>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -60,7 +62,7 @@
           </thead>
           <tbody>
             <%
-            LegumeLoader loader = new LegumeLoader(getServletContext().getRealPath("/") + "beans/");
+            LegumeLoader loader = (LegumeLoader) session.getAttribute("loader");
             ArrayList<Bean> beans = loader.getBeans();
             for (Bean bean : beans) {
             %>
