@@ -1,4 +1,6 @@
 <%@ page import="coffee.*" %>
+<%@ page import="java.util.ArrayList" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +59,7 @@
             </tr>
           </thead>
           <tbody>
-            <%-- <%
+            <%
             LegumeLoader loader = new LegumeLoader(getServletContext().getRealPath("/") + "beans/");
             ArrayList<Bean> beans = loader.getBeans();
             for (Bean bean : beans) {
@@ -67,7 +69,7 @@
               </tr>
             <%
             }
-            %> --%>
+            %>
             <tr>
               <th class="bean-data">Test</th>
               <th class="bean-data">Passion</th>
