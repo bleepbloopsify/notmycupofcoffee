@@ -2,7 +2,8 @@ package coffee;
 
 // Marcus Barbu says hi
 public class MGBean extends Bean {
-  public String roast() {
-    return "p r e z";
+  public MGBean() {
+    this.name = "MG";
+    this.description = "p r e z";
   }
 }

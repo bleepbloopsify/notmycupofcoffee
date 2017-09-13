@@ -2,7 +2,8 @@ package coffee;
 
 // Hello
 public class FlagBean extends Bean {
-  public String roast(){
-    return System.getenv("flag");
+  public FlagBean() {
+    this.name = "Flag";
+    this.description = System.getenv("flag");
   }
 }
