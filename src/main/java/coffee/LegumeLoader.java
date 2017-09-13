@@ -1,41 +1,64 @@
 package coffee;
 
-import com.esotericsoftware.yamlbeans.YamlReader;
-import com.esotericsoftware.yamlbeans.YamlWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.lang.ClassNotFoundException;
+import java.lang.IllegalAccessException;
+import java.lang.InstantiationException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.NoSuchMethodException;
 import java.util.ArrayList;
+import java.util.Base64;
+import java.lang.reflect.Constructor;
+
 
 public class LegumeLoader {
-  private String legumestore;
+  private String legumefolder;
+  private ArrayList<Bean> beans;
 
-  public LegumeLoader(String legumestore) {
-    this.legumestore = legumestore;
-  }
-
-  public ArrayList<Bean> getBeans() throws IOException {
-    File dir = new File(this.legumestore);
-    ArrayList<Bean> beans = new ArrayList<Bean>();
+  public LegumeLoader(String legumefolder) throws ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
+    this.legumefolder = legumefolder;
+    File dir = new File(this.legumefolder);
     for (File f : dir.listFiles()) {
-      if (f.isFile()) {
-        beans.add(this.getBean(f.getName()));
+      String name = f.getName();
+      if (f.isFile() && name != "FlagBean") {
+        beans.add(this.getBean(name));
       }
     }
+  }
+
+  public ArrayList<Bean> getBeans() {
     return beans;
   }
 
-  public Bean getBean(String filename) throws IOException {
-    YamlReader reader = new YamlReader(new FileReader(this.legumestore + filename));
-    Bean bean = reader.read(Bean.class);
-    reader.close();
+  public Bean getBean(String name) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+    Class<?> beanClass = Class.forName(name);
+    Constructor<?> constructor = beanClass.getConstructor();
+    Bean bean = (Bean) constructor.newInstance();
     return bean;
   }
 
-  public void storeBean(Bean bean, String filename) throws IOException {
-    YamlWriter writer = new YamlWriter(new FileWriter(this.legumestore + filename));
-    writer.write(bean);
-    writer.close();
+  public String sendBean(Bean bean) throws IOException {
+    final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    final ObjectOutputStream oos = new ObjectOutputStream(baos);
+    oos.writeObject(bean);
+    oos.flush();
+    final String result = new String(Base64.getEncoder().encode(baos.toByteArray()));
+    return result;
+  }
+
+  public Boolean beanExists(String name) {
+    for (Bean b : this.beans) {
+      if (b.getName() == name) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public void addBean(Bean bean) {
+    this.beans.add(bean);
   }
 }

@@ -2,7 +2,8 @@ package coffee;
 
 // Ghost spook
 public class GhostBean extends Bean {
-  public String roast() {
-    return "spoopy";
+  public GhostBean() {
+    this.name = "Ghost";
+    this.description = "spoopy";
   }
 }
