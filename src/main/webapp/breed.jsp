@@ -30,7 +30,7 @@
     <div class="container">
       <div class="row justify-content-center bean-title">
         <div class="col-sm-12">
-          <h2>Bean Breeding Chamber</h2>
+          <h2>Bean Passion Chamber</h2>
         </div>
       </div>
       <form method="POST" action="roaster.jsp">

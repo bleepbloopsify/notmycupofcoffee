@@ -57,6 +57,13 @@ public class LegumeLoader {
     return false;
   }
 
+  public Boolean beanLimit() {
+    if (beans.size() > 30) {
+      return true;
+    }
+    return false;
+  }
+
   public void addBean(Bean bean) {
     this.beans.add(bean);
   }

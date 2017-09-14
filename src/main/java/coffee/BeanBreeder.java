@@ -17,7 +17,7 @@ public class BeanBreeder {
   }
 
   public Bean breedBean(Bean parent1, Bean parent2, String name, String description) {
-    if (name == null || loader.beanExists(name) || parent1 == null || parent2 == null) {
+    if (name == null || loader.beanExists(name) || loader.beanLimit() || parent1 == null || parent2 == null) {
       return null;
     }
 
@@ -42,10 +42,12 @@ public class BeanBreeder {
     String description = request.getParameter("bean-desc");
     String name = request.getParameter("bean-name");
     if (name.trim() == "") {
-      name = null;
+      throw new NullPointerException("Name Cannot Be Empty");
     }
     if (description.trim() == "") {
       description = null;
+    } else if (description.length() > 100) {
+      description = description.substring(0, 100);
     }
     return this.breedBean(parent1, parent2, name, description);
   }
