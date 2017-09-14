@@ -26,7 +26,7 @@
 
       Bean bean = breeder.process(request);
       if (bean != null) {
-        loader.addBean(bean);
+        loader.addBean(bean, request.getParameter("bean-desc"));
       }
       %>
   </body>

@@ -4,6 +4,5 @@ package coffee;
 public class YeetBean extends Bean {
   public YeetBean() {
     this.name = "Yeet";
-    this.description = "yeet";
   }
 }

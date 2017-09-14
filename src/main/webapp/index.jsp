@@ -67,7 +67,7 @@
             %>
               <tr>
                 <th class="bean-data"><%= bean.getName() %></th>
-                <th class="bean-data"><%= bean.roast() %></th>
+                <th class="bean-data"><%= loader.roast(bean) %></th>
                 <th class="bean-data"><%= bean.getParent1() %></th>
                 <th class="bean-data"><%= bean.getParent2() %></th>
                 <th class="bean-data bean-avail">Yes</th>

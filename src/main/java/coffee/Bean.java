@@ -10,20 +10,21 @@ import java.util.Random;
 public class Bean implements Serializable {
 
   protected String name;
-  protected String description;
   private Bean parent1;
   private Bean parent2;
   private Bean inherit;
 
-  public String roast() {
-    if (this.description == null) {
-      if (this.inherit == null) {
-        return "Uh oh it's an orphan bean";
-      }
-      return this.inherit.roast();
-    }
-    return this.description;
-  }
+  // public String roast() {
+  //   if (this.description == null) {
+  //     if (this.inherit == null) {
+  //       return "Uh oh it's an orphan bean";
+  //     }
+  //     return this.inherit.roast();
+  //   }
+  //   return this.description;
+  // }
+
+  public Bean getInherit() { return this.inherit; }
 
   public void setParent(final Bean parent1, final Bean parent2) {
     this.parent1 = parent1;
@@ -57,9 +58,5 @@ public class Bean implements Serializable {
 
   public void setName(final String name) {
     this.name = name;
-  }
-
-  public void setDescription(final String description) {
-    this.description = description;
   }
 }

@@ -4,6 +4,5 @@ package coffee;
 public class TnekBean extends Bean {
   public TnekBean() {
     this.name = "Tnek";
-    this.description = "I'll save you";
   }
 }

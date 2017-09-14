@@ -4,6 +4,5 @@ package coffee;
 public class GhostBean extends Bean {
   public GhostBean() {
     this.name = "Ghost";
-    this.description = "spoopy";
   }
 }

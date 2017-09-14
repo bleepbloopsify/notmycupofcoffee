@@ -20,14 +20,13 @@ public class BeanBreeder {
     this.loader = loader;
   }
 
-  public Bean breedBean(Bean parent1, Bean parent2, String name, String description) {
-    if (name == null || loader.beanExists(name) || loader.beanLimit() || parent1 == null || parent2 == null) {
+  public Bean breedBean(Bean parent1, Bean parent2, String name) {
+    if (name == null || loader.beanExists(name) || parent1 == null || parent2 == null) {
       return null;
     }
 
     Bean bean = new Bean();
     bean.setParent(parent1, parent2);
-    bean.setDescription(description);
     bean.setName(name);
     return bean;
   }
@@ -53,16 +52,10 @@ public class BeanBreeder {
   public Bean process(HttpServletRequest request) throws IOException, ClassNotFoundException {
     final Bean parent1 = this.recvBean(request.getParameter("parent1"));
     final Bean parent2 = this.recvBean(request.getParameter("parent2"));
-    String description = request.getParameter("bean-desc");
     String name = request.getParameter("bean-name");
     if (name.trim() == "") {
       name = null;
     }
-    if (description.trim() == "") {
-      description = null;
-    } else if (description.length() > 100) {
-      description = description.substring(0, 100);
-    }
-    return this.breedBean(parent1, parent2, name, description);
+    return this.breedBean(parent1, parent2, name);
   }
 }
