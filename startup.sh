@@ -1,3 +1,4 @@
+export flag=$(cat flag.txt)
 mvn clean
 mvn install
 docker build . -t coffee

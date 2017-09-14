@@ -18,7 +18,7 @@ public class LegumeLoader {
   private String legumefolder;
   private ArrayList<Bean> beans;
   private String[] beanNames = {"Covfefe", "Dennis", "Ghost", "Hyper", "MG",
-                                "Passion", "Raid", "Tnek", "Yeet"};
+                                "Passion", "Raid", "Tnek", "Yeet", "Flag"};
 
   public LegumeLoader(String legumefolder) throws ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
     this.legumefolder = legumefolder;
