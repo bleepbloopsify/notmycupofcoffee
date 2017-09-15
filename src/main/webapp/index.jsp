@@ -85,6 +85,11 @@
           </tbody>
         </table>
       </div>
+      <div class="row justify-content-center footer">
+        <div class="col-sm-auto">
+          <a href="/password.jsp">Admin</a>
+        </div>
+      </div>
     </div>
   </body>
 </html>

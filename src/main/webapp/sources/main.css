@@ -1,12 +1,17 @@
 body {
 }
 
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .bean-container {
   background: url("beans.jpg") no-repeat center center;
   /*background: url("https://images.unsplash.com/photo-1448641434006-6a836ed4856d") no-repeat center center;*/
   color: white;
   min-height: 300px;
-  padding: 40px 0;
+  padding: 40px 15px;
 }
 
 .navbar-brand {
@@ -53,4 +58,13 @@ body {
 
 .bean-no-avail {
   color: red;
+}
+
+.nav-space {
+  padding-top: 30px;
+}
+
+.footer {
+  padding-bottom: 20px;
+  font-size: 12px;
 }

@@ -1,5 +1,8 @@
 package coffee;
 
+
+import com.google.common.hash.Hashing;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -9,6 +12,7 @@ import java.lang.IllegalAccessException;
 import java.lang.InstantiationException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.NoSuchMethodException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.lang.reflect.Constructor;
@@ -16,6 +20,7 @@ import java.lang.reflect.Constructor;
 
 public class LegumeLoader {
   private String legumefolder;
+  private String sign = "c@ram31m4cchi@o";
   private ArrayList<Bean> beans;
   private String[] beanNames = {"Covfefe", "Dennis", "Ghost", "Hyper", "MG",
                                 "Passion", "Raid", "Tnek", "Yeet", "Flag"};
@@ -44,8 +49,11 @@ public class LegumeLoader {
     final ObjectOutputStream oos = new ObjectOutputStream(baos);
     oos.writeObject(bean);
     oos.flush();
-    final String result = new String(Base64.getEncoder().encode(baos.toByteArray()));
-    return result;
+    String result = new String(Base64.getEncoder().encode(baos.toByteArray()));
+    final String hashed = Hashing.sha256()
+          .hashString(result + "-" + this.sign, StandardCharsets.UTF_8)
+          .toString();
+    return result + "-" + hashed;
   }
 
   public Boolean beanExists(String name) {

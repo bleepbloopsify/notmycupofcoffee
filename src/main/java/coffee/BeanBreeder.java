@@ -2,15 +2,19 @@ package coffee;
 
 import javax.servlet.http.*;
 
+import com.google.common.hash.Hashing;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.lang.ClassNotFoundException;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 
 public class BeanBreeder {
   public LegumeLoader loader;
+  private String sign = "c@ram31m4cchi@o";
 
   public BeanBreeder(LegumeLoader loader) {
     this.loader = loader;
@@ -29,8 +33,18 @@ public class BeanBreeder {
   }
 
   public Bean recvBean(String bean) throws IOException, ClassNotFoundException {
-    if (bean == null) return null;
-    final byte[] objToBytes = Base64.getDecoder().decode(bean);
+    if (bean == null || bean.indexOf('-') < 0) return null;
+    String[] parts = bean.split("-");
+    String serialbean = parts[0];
+    String hashbean = parts[1];
+    Bean test = new Bean();
+    final String hashed = Hashing.sha256()
+          .hashString(serialbean + "-" + this.sign, StandardCharsets.UTF_8)
+          .toString();
+    if (!hashed.equals(hashbean)) {
+      return null;
+    }
+    final byte[] objToBytes = Base64.getDecoder().decode(serialbean);
     ByteArrayInputStream bais = new ByteArrayInputStream(objToBytes);
     ObjectInputStream ois = new ObjectInputStream(bais);
     return (Bean) ois.readObject();
@@ -42,7 +56,7 @@ public class BeanBreeder {
     String description = request.getParameter("bean-desc");
     String name = request.getParameter("bean-name");
     if (name.trim() == "") {
-      throw new NullPointerException("Name Cannot Be Empty");
+      name = null;
     }
     if (description.trim() == "") {
       description = null;
