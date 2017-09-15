@@ -124,6 +124,7 @@ public class BeanSolve {
   public static void main(String[] args) throws UnsupportedEncodingException, IOException {
     String sign = getSign();
 
+    String target = getHash();
     String basehash = getHash().split("-")[0];
 
     // Fill in hash to flag
