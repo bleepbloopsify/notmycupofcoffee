@@ -1,6 +1,5 @@
 package coffee;
 
-
 import com.google.common.hash.Hashing;
 
 import java.io.ByteArrayOutputStream;
@@ -24,7 +23,7 @@ public class LegumeLoader {
   private String sign = "c@ram31m4cchi@o";
   private ArrayList<Bean> beans;
   private String[] beanNames = {"Covfefe", "Dennis", "Ghost", "Hyper", "MG",
-                                "Passion", "Raid", "Tnek", "Yeet"};
+                                "Passion", "Raid", "Tnek", "Yeet", "Flag"};
   private static HashMap<String, String> beanDescriptions;
 
   public LegumeLoader(String legumefolder) throws ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
