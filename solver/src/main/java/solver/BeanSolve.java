@@ -160,7 +160,7 @@ public class BeanSolve {
     return result;
   }
 
-  public static ArrayList<String> hexString(String arg) {
+  public static String hexString(String arg) {
     String result = String.format("%040x", new BigInteger(1, arg.getBytes()));
     for (int i = 0; i < result.length(); i++){
       char c = result.charAt(i);
