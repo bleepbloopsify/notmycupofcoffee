@@ -66,21 +66,21 @@
             for (Bean bean : beans) {
             %>
               <tr>
-                <th class="bean-data"><%= bean.getName() %></th>
-                <th class="bean-data"><%= loader.roast(bean) %></th>
-                <th class="bean-data"><%= bean.getParent1() %></th>
-                <th class="bean-data"><%= bean.getParent2() %></th>
-                <th class="bean-data bean-avail">Yes</th>
+                <td class="bean-data"><%= bean.getName() %></td>
+                <td class="bean-data"><%= loader.roast(bean) %></td>
+                <td class="bean-data"><%= bean.getParent1() %></td>
+                <td class="bean-data"><%= bean.getParent2() %></td>
+                <td class="bean-data bean-avail">Yes</td>
               </tr>
             <%
             }
             %>
             <tr>
-              <th class="bean-data">Flag</th>
-              <th class="bean-data">-</th>
-              <th class="bean-data">-</th>
-              <th class="bean-data">-</th>
-              <th class="bean-data bean-no-avail">No</th>
+              <td class="bean-data">Flag</td>
+              <td class="bean-data">-</td>
+              <td class="bean-data">-</td>
+              <td class="bean-data">-</td>
+              <td class="bean-data bean-no-avail">No</td>
             </tr>
           </tbody>
         </table>

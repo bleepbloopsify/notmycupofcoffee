@@ -23,7 +23,7 @@ public class LegumeLoader {
   private String sign = "c@ram31m4cchi@o";
   private ArrayList<Bean> beans;
   private String[] beanNames = {"Covfefe", "Dennis", "Ghost", "Hyper", "MG",
-                                "Passion", "Raid", "Tnek", "Yeet", "Flag"};
+                                "Passion", "Raid", "Tnek", "Yeet"};
   private static HashMap<String, String> beanDescriptions;
 
   public LegumeLoader(String legumefolder) throws ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
@@ -63,7 +63,7 @@ public class LegumeLoader {
     oos.flush();
     String result = new String(Base64.getEncoder().encode(baos.toByteArray()));
     final String hashed = Hashing.sha256()
-          .hashString(result + "-" + this.sign, StandardCharsets.UTF_8)
+          .hashString(result + this.sign, StandardCharsets.UTF_8)
           .toString();
     return result + "-" + hashed;
   }

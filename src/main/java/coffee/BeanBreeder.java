@@ -38,7 +38,7 @@ public class BeanBreeder {
     String hashbean = parts[1];
     Bean test = new Bean();
     final String hashed = Hashing.sha256()
-          .hashString(serialbean + "-" + this.sign, StandardCharsets.UTF_8)
+          .hashString(serialbean + this.sign, StandardCharsets.UTF_8)
           .toString();
     if (!hashed.equals(hashbean)) {
       return null;
