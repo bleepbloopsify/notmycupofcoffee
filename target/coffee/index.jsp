@@ -33,7 +33,7 @@
       </div>
       <div class="row justify-content-center bean-desc">
         <div class="col-sm-6">
-          <h5>We aspire to create only the freshest beans that help people do less. We want to put breeding first and cultivation alongside. We dream of a world where the endless and the infinite become realities to mankind, and where the true value of beans are preserved.</h5>
+          <h5>We aspire to create only the freshest beans that help people do less. We want to put breeding first and cultivation alongside. We dream of a world where the endless and the infinite become realities to beankind, and where the true value of beans are preserved.</h5>
         </div>
       </div>
       <div class="row justify-content-center bean-btn">
@@ -66,21 +66,21 @@
             for (Bean bean : beans) {
             %>
               <tr>
-                <th class="bean-data"><%= bean.getName() %></th>
-                <th class="bean-data"><%= loader.roast(bean) %></th>
-                <th class="bean-data"><%= bean.getParent1() %></th>
-                <th class="bean-data"><%= bean.getParent2() %></th>
-                <th class="bean-data bean-avail">Yes</th>
+                <td class="bean-data"><%= bean.getName() %></td>
+                <td class="bean-data"><%= loader.roast(bean) %></td>
+                <td class="bean-data"><%= bean.getParent1() %></td>
+                <td class="bean-data"><%= bean.getParent2() %></td>
+                <td class="bean-data bean-avail">Yes</td>
               </tr>
             <%
             }
             %>
             <tr>
-              <th class="bean-data">Flag</th>
-              <th class="bean-data">-</th>
-              <th class="bean-data">-</th>
-              <th class="bean-data">-</th>
-              <th class="bean-data bean-no-avail">No</th>
+              <td class="bean-data">Flag</td>
+              <td class="bean-data">-</td>
+              <td class="bean-data">-</td>
+              <td class="bean-data">-</td>
+              <td class="bean-data bean-no-avail">No</td>
             </tr>
           </tbody>
         </table>

@@ -33,7 +33,7 @@
       </div>
       <div class="row justify-content-center bean-desc">
         <div class="col-sm-6">
-          <h5>We aspire to create only the freshest beans that help people do less. We want to put breeding first and cultivation alongside. We dream of a world where the endless and the infinite become realities to mankind, and where the true value of beans are preserved.</h5>
+          <h5>We aspire to create only the freshest beans that help people do less. We want to put breeding first and cultivation alongside. We dream of a world where the endless and the infinite become realities to beankind, and where the true value of beans are preserved.</h5>
         </div>
       </div>
       <div class="row justify-content-center bean-btn">
