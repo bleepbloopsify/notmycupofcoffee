@@ -35,4 +35,10 @@ public class PasswordMatch {
     }
     return null;
   }
+
+
+  public static void main(String args[]) {
+    PasswordMatch pm = new PasswordMatch("Pas$ion");
+    System.out.println(pm.generate(""));
+  }
 }

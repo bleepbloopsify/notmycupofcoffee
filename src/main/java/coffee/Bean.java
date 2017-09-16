@@ -8,7 +8,7 @@ import java.io.File;
 import java.util.Random;
 
 public class Bean implements Serializable {
-
+  private static final long serialVersionUID = 1;
   protected String name;
   private Bean parent1;
   private Bean parent2;
