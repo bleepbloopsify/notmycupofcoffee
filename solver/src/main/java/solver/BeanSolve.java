@@ -36,10 +36,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.Jsoup;
 
 public class BeanSolve {
-
+  public static String SERVER_IP =  "http://localhost:8888";
   public static String getSign() throws UnsupportedEncodingException, IOException {
     CloseableHttpClient httpclient = HttpClients.createDefault();
-    HttpPost httppost = new HttpPost("http://localhost:8080/admin.jsp");
+    HttpPost httppost = new HttpPost(BeanSolve.SERVER_IP + "/admin.jsp");
     String pass = "Pas$ion";
     PasswordMatch passmatch = new PasswordMatch(pass);
     String altpass = passmatch.generate(pass);
@@ -67,7 +67,7 @@ public class BeanSolve {
 
   public static String[] getHash() throws UnsupportedEncodingException, IOException {
     CloseableHttpClient httpclient = HttpClients.createDefault();
-    HttpGet httpget = new HttpGet("http://localhost:8080/breed.jsp");
+    HttpGet httpget = new HttpGet(BeanSolve.SERVER_IP + "/breed.jsp");
 
     HttpResponse response = httpclient.execute(httpget);
     HttpEntity entity = response.getEntity();
@@ -89,7 +89,7 @@ public class BeanSolve {
   public static void submitBean(String sessionId, String parentHash, String name) throws UnsupportedEncodingException, IOException {
     CloseableHttpClient client = HttpClientBuilder.create().build();
 
-    final HttpPost post = new HttpPost("http://localhost:8080/roaster.jsp");
+    final HttpPost post = new HttpPost(BeanSolve.SERVER_IP + "/roaster.jsp");
 
     List<NameValuePair> params = new ArrayList<NameValuePair>(1);
     params.add(new BasicNameValuePair("parent1", parentHash));
@@ -106,7 +106,7 @@ public class BeanSolve {
   public static String getFlag(String sessionId, String name) throws UnsupportedEncodingException, IOException {
     CloseableHttpClient client = HttpClientBuilder.create().build();
 
-    final HttpGet get = new HttpGet("http://localhost:8080");
+    final HttpGet get = new HttpGet(BeanSolve.SERVER_IP + "");
     get.setHeader("Cookie", "JSESSIONID=" + sessionId);
 
     CloseableHttpResponse resp = client.execute(get);
@@ -135,7 +135,7 @@ public class BeanSolve {
     HttpClientBuilder builder = HttpClientBuilder.create().setDefaultCookieStore(cookieStore);
     client = builder.build();
 
-    final HttpGet get = new HttpGet("http://localhost:8080");
+    final HttpGet get = new HttpGet(BeanSolve.SERVER_IP + "");
     CloseableHttpResponse resp = client.execute(get);
 
     List<Cookie> cookies = cookieStore.getCookies();
@@ -248,6 +248,7 @@ public class BeanSolve {
   }
 
   public static void main(String[] args) throws UnsupportedEncodingException, IOException {
+
     String sessionId = getCookie();
     String sign = getSign();
 
